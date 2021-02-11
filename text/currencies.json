@@ -1,0 +1,21 @@
+{
+    "currency":[
+        "AUDJPY", 
+        "AUDCAD",
+        "EURGBP",
+        "EURUSD",
+        "EURCAD",
+        "EURAUD",
+        "EURJPY",
+        "NZDJPY",
+        "GBPJPY",
+        "GBPCAD",
+        "GBPUSD",
+        "USDJPY",
+        "USDCAD",
+        "USDCHF",
+        "GOLD",
+        "TP",
+        "SL"
+    ]
+}

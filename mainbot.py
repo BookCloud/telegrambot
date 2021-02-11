@@ -27,6 +27,16 @@ with open("text/blacklist.json") as json_file:
 
     print(editedBlack)
 
+with open("text/currencies.json") as json_file:
+    data = json.load(json_file)
+    currency = data["currency"]
+    editedCurr = []
+    for i in range(len(currency)):
+        new = currency[i].lower()
+        editedCurr.append(new)
+
+    print(editedCurr)
+
 
 with open("text/receiveFrom.json") as json_file:
     data = json.load(json_file)
@@ -53,14 +63,18 @@ client = TelegramClient("anon", api_id, api_hash)
 
 @client.on(events.NewMessage(from_users=skemmers))
 async def my_event_handler(event):
-    txt = event.raw_text.upper()
-    print(txt)
-    sent = False
+    msg = event.raw_text
+    txt = msg.upper()
+    print(msg)
     if [ele for ele in editedKeywords if (ele in txt)]:
         if not [j for j in editedBlack if (j in txt)]:
+            for i in editedCurr:
+                msg = ' '.join(
+                    [i.upper() if idx.lower() == i else idx for idx in msg.split()])
+
             print("send")
             for x in sheeps:
-                await client.send_message(x, event.raw_text)
+                await client.send_message(x, msg)
 
 
 client.start()
